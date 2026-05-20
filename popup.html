@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ShiftController Holidays</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      width: 340px;
+      background: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background: #2271b1;
+      color: white;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .section {
+      background: white;
+      margin: 10px;
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .section h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .toggle-label { font-weight: bold; }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #ccc;
+      border-radius: 24px;
+      transition: .3s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px; width: 18px;
+      left: 3px; bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: .3s;
+    }
+    input:checked + .slider { background-color: #2271b1; }
+    input:checked + .slider:before { transform: translateX(20px); }
+    .color-row { display: flex; align-items: center; gap: 10px; }
+    input[type="color"] {
+      width: 40px; height: 32px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer; padding: 2px;
+    }
+    .color-hex { font-family: monospace; font-size: 13px; color: #555; }
+    .date-input-row { display: flex; gap: 6px; margin-bottom: 8px; }
+    input[type="date"] {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 13px;
+    }
+    button.add-btn {
+      background: #2271b1; color: white;
+      border: none; border-radius: 4px;
+      padding: 5px 12px; cursor: pointer; font-size: 13px;
+    }
+    button.add-btn:hover { background: #135e96; }
+    #holiday-list { list-style: none; max-height: 160px; overflow-y: auto; }
+    #holiday-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 6px;
+      border-radius: 4px;
+      margin-bottom: 3px;
+      background: #f0f0f0;
+    }
+    #holiday-list li:hover { background: #e0e8f5; }
+    .del-btn {
+      background: none; border: none;
+      color: #c00; cursor: pointer;
+      font-size: 16px; line-height: 1; padding: 0 4px;
+    }
+    .del-btn:hover { color: #900; }
+    .empty-msg { color: #aaa; font-style: italic; text-align: center; padding: 8px 0; }
+    .save-row { padding: 10px; text-align: right; }
+    button.save-btn {
+      background: #00a32a; color: white;
+      border: none; border-radius: 4px;
+      padding: 7px 20px; cursor: pointer;
+      font-size: 14px; font-weight: bold;
+    }
+    button.save-btn:hover { background: #007a1e; }
+    #status {
+      text-align: center; color: #007a1e;
+      font-weight: bold; font-size: 12px;
+      min-height: 18px; padding-bottom: 6px;
+    }
+    .donate {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+      padding: 6px 10px 10px;
+      line-height: 1.5;
+    }
+    .donate a { color: #2271b1; text-decoration: none; }
+    .donate a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>&#128197; ShiftController Holidays</header>
+
+  <div class="section">
+    <h3>Extension</h3>
+    <div class="toggle-row">
+      <span class="toggle-label">Enable column highlighting</span>
+      <label class="switch">
+        <input type="checkbox" id="enabled" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Background color</h3>
+    <div class="color-row">
+      <input type="color" id="bgColor" value="#FFD700">
+      <span class="color-hex" id="colorHex">#FFD700</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Public holidays</h3>
+    <div class="date-input-row">
+      <input type="date" id="newDate">
+      <button class="add-btn" id="addDate">+ Add</button>
+    </div>
+    <ul id="holiday-list">
+      <li class="empty-msg">No holidays configured</li>
+    </ul>
+  </div>
+
+  <div class="save-row">
+    <div id="status"></div>
+    <button class="save-btn" id="saveBtn">&#128190; Save</button>
+  </div>
+
+  <div class="donate">
+    Free extension &mdash; If you wish, support an association helping orphans or fighting hunger:
+    <br><a href="https://www.dignite-international.org/" target="_blank">Dignit&eacute; International</a>
+    &bull; <a href="https://www.actioncontrelafaim.org" target="_blank">Action Contre la Faim</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

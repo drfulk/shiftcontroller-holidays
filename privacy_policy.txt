@@ -1,0 +1,22 @@
+ShiftController Holidays – Privacy Policy
+==========================================
+
+Last updated: May 2026
+
+This extension does not collect, transmit, or share any personal data.
+
+All settings (holiday dates, background color, enabled/disabled state) are stored
+locally in your browser using the chrome.storage.sync API, and are only used to
+highlight columns in ShiftController4 pages.
+
+No data is sent to any external server.
+No analytics or tracking of any kind is used.
+
+Developer contact: (none)
+
+---
+
+This extension is free to use. If you wish to support a charitable cause helping
+orphans or fighting hunger in the world, you may donate to:
+  - Dignite International: https://www.dignite-international.org/
+  - Action Contre la Faim: https://www.actioncontrelafaim.org
