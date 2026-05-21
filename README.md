@@ -11,6 +11,14 @@ Compatible with ShiftController Employee Shift Scheduling Plugin, version 4.9.81
 - Enable or disable the extension at any time.
 - Works on pages using `/wp-admin/admin.php?page=shiftcontroller4`.
 
+## Screenshots
+
+### Holiday date entry and color selection interface
+![Holiday date entry and color selection interface](images/interface-holiday-dates-colors.png)
+
+### Shift table
+![Shift table](images/shift-table.png)
+
 ## Installation (Developer Mode)
 
 1. Unzip this archive to a local folder.
